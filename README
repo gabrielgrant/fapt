@@ -42,8 +42,10 @@ Installation
 
 Step one (and only):
 
-    curl https://github.com/gabrielgrant/fapt/raw/master/quickstart.sh | source /dev/stdin
+    eval `curl https://github.com/gabrielgrant/fapt/raw/master/quickstart.sh`
 
+
+Note: the astute among you will likely have noted that `eval`ing things straight off the wire is not exactly the most secure practice. Feel free to open up quickstart.sh and run the containing commands. It's pretty short.
 
 Usage
 -----

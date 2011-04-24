@@ -56,7 +56,9 @@ export FAPT_ROOT=${HOME}/.fapt/fake
 
 # fapt paths
 export PATH=$FAPT_PATH:\$PATH:$BACKUP_PATH
+
 export REALROOT_PATH=$REALROOT_PATH
+
 
 # fapt lib path
 export LD_LIBRARY_PATH=$FAPT_LD_LIBRARY_PATH:\$LD_LIBRARY_PATH
