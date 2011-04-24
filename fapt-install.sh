@@ -70,6 +70,7 @@ ln -sf /sbin $FAPT_ROOT/
 # needed for apt to work
 mkdir -p $FAPT_ROOT/var/cache/apt/archives/partial
 cp -rf /var/lib/apt/ $FAPT_ROOT/var/lib/
+mkdir -p $FAPT_ROOT/var/lib/apt/lists/partial
 
 
 mkdir -p $FAPT_ROOT/var/log/
@@ -101,5 +102,7 @@ cp -f $DIR/fapt.sh $FAPT_ROOT/usr/bin/fapt
 chmod +x $FAPT_ROOT/usr/bin/fapt
 
 apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf update
+
+source ~/.profile
 
 echo "Done installing. Happy fapt-ing!"
