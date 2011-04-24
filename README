@@ -22,7 +22,6 @@ Requirements:
  - system uses apt for its own package management
  - fakeroot
  - gcc
- - a sane local bash environment (use my bash env bootstrap script)
 
 
 fapt uses prebuilt binary packages, it does NOT build packages upon downloading
@@ -40,9 +39,6 @@ Isn't that what package management was made for? I thought so too.
 
 Installation
 ------------
-
-Make sure your local bash environment is well configured. fapt assumes the environment is like what comes out of my [bootstrap_local_bash_env.sh script](https://github.com/gabrielgrant/bootstrap/raw/master/bootstrap_local_bash_env.sh)
-
 
 Step one (and only):
 
