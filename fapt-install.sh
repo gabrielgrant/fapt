@@ -98,6 +98,7 @@ DPkg
 
 mkdir -p $FAPT_ROOT/usr/bin
 cp -f $DIR/fapt.sh $FAPT_ROOT/usr/bin/fapt
+chmod +x $FAPT_ROOT/usr/bin/fapt
 
 apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf update
 
