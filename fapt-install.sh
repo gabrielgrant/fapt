@@ -12,16 +12,18 @@ mkdir -p $FAPT_ROOT/tmp
 curl -o $FAPT_ROOT/tmp/bootstrap_local_bash_env.sh https://github.com/gabrielgrant/bootstrap/raw/master/bootstrap_local_bash_env.sh
 bash $FAPT_ROOT/tmp/bootstrap_local_bash_env.sh
 
-echo "Installing fakechroot..."
+if ! type -P fakechroot &>/dev/null; then
+    echo "Installing fakechroot..."
 
-cd $FAPT_ROOT/tmp
-curl -O http://cloud.github.com/downloads/fakechroot/fakechroot/fakechroot-2.14.tar.gz
-tar -xzf fakechroot-2.14.tar.gz
-cd fakechroot-2.14
-./configure --prefix=$FAPT_ROOT
-make
-make install
-cd ~/
+    cd $FAPT_ROOT/tmp
+    curl -O http://cloud.github.com/downloads/fakechroot/fakechroot/fakechroot-2.14.tar.gz
+    tar -xzf fakechroot-2.14.tar.gz
+    cd fakechroot-2.14
+    ./configure --prefix=$FAPT_ROOT
+    make
+    make install
+    cd ~/
+fi
 
 # allows chroot to start
 ln -sf /bin/bash $FAPT_ROOT/bin/bash
