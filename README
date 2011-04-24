@@ -1,5 +1,6 @@
 
 fapt -- the Fake APT
+====================
 
 Install packages using the Advanced Packaging Tool (APT) without root access
 
@@ -66,6 +67,6 @@ apt/dpkg
 
 
 Copyright Gabriel Grant, 2011
-
+License: GNU General Public License, version 3 (http://www.gnu.org/licenses/gpl.html)
 
 
