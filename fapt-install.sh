@@ -32,6 +32,9 @@ ln -sf /bin/bash $FAPT_ROOT/bin/bash
 ln -sf /bin/sh $FAPT_ROOT/bin/sh
 
 
+# make sure we have the full PATH (in case we're running non-interactively)
+source ~/.profile
+source ~/.bashrc
 
 # give access to executables outside of chroot
 #
