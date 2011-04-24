@@ -3,8 +3,8 @@
 echo "installing fapt..."
 
 FAPT_ROOT=${HOME}/.fapt/fake
-#SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
-SCRIPT_DIR=$BASH_SOURCE
+SCRIPT_DIR="$( cd "$( dirname "$BASH_SOURCE" )" && pwd )"
+
 
 mkdir -p $FAPT_ROOT/bin
 mkdir -p $FAPT_ROOT/tmp
@@ -99,7 +99,7 @@ DPkg
 " > $FAPT_ROOT/etc/apt/apt.conf
 
 mkdir -p $FAPT_ROOT/usr/bin
-cp -f $DIR/fapt.sh $FAPT_ROOT/usr/bin/fapt
+cp -f $SCRIPT_DIR/fapt.sh $FAPT_ROOT/usr/bin/fapt
 chmod +x $FAPT_ROOT/usr/bin/fapt
 
 apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf update
