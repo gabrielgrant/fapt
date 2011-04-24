@@ -57,9 +57,13 @@ fapt only does installation at the moment, so the command works like apt-get ins
 Thanks
 ------
 
-fakeroot
-fakechroot
-apt/dpkg
+This project wouldn't have happened without:
+
+- fakeroot
+- fakechroot
+- apt/dpkg
+- Google
+- man-pages
 
 
 Copyright Gabriel Grant, 2011
