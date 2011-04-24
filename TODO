@@ -1,0 +1,12 @@
+
+
+make use of a `depends.apt`
+
+more apt-like interface?
+
+ - `fapt-get install`
+ - `fapt-get remove`
+
+
+
+

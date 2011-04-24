@@ -1,0 +1,71 @@
+
+fapt -- the Fake APT
+
+Install packages using the Advanced Packaging Tool (APT) without root access
+
+ - no sudo needed to install fapt
+ - no sudo needed to run fapt (ie to install other software)
+ - usable in conjunction with globally-installed packages (similar to virtualenv WITH site packages)
+ - no special activation needed
+ - debootstrap not needed (no need to download redundant dependencies)
+
+This should be useful whenever you don't have root access:
+
+ - shared hosting
+ - shared school computer system
+ - PaaS providers ([dotCloud](http://dotcloud.com) etc.)
+
+Requirements:
+
+ - shell access
+ - system uses apt for its own package management
+ - fakeroot
+ - gcc
+ - a sane local bash environment (use my bash env bootstrap script)
+
+
+fapt uses prebuilt binary packages, it does NOT build packages upon downloading
+
+Rationale
+---------
+
+The whole point of unix is to be multi-user, but a system isn't very useful if I don't have the software I need. "Sure," says the sysadmin, "you can install whatever you want.
+Just go find the tarball, download unpack, compile and install it locally."
+
+Works great. Until you need to install ffmpeg; 30 dependencies later (excluding any special codecs) you appreciate why they call it dependency hell.
+
+Isn't that what package management was made for? I thought so too.
+
+
+Installation
+------------
+
+Make sure your local bash environment is well configured. fapt assumes the environment is like what comes out of my [bootstrap_local_bash_env.sh script](https://github.com/gabrielgrant/bootstrap/raw/master/bootstrap_local_bash_env.sh)
+
+
+Step one (and only):
+
+    curl https://github.com/gabrielgrant/fapt/raw/master/quickstart.sh | bash
+
+
+Usage
+-----
+
+fapt only does installation at the moment, so the command works like apt-get install:
+
+    fapt <package name> [<other package name> [...]]
+
+
+
+Thanks
+------
+
+fakeroot
+fakechroot
+apt/dpkg
+
+
+Copyright Gabriel Grant, 2011
+
+
+
