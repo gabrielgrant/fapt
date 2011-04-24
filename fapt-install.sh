@@ -3,7 +3,8 @@
 echo "installing fapt..."
 
 FAPT_ROOT=${HOME}/.fapt/fake
-DIR="$( cd "$( dirname "$0" )" && pwd )"
+#SCRIPT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+SCRIPT_DIR=$BASH_SOURCE
 
 mkdir -p $FAPT_ROOT/bin
 mkdir -p $FAPT_ROOT/tmp
