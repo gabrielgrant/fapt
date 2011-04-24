@@ -46,7 +46,7 @@ Make sure your local bash environment is well configured. fapt assumes the envir
 
 Step one (and only):
 
-    curl https://github.com/gabrielgrant/fapt/raw/master/quickstart.sh | bash
+    curl https://github.com/gabrielgrant/fapt/raw/master/quickstart.sh | source /dev/stdin
 
 
 Usage

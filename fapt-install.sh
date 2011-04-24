@@ -105,4 +105,4 @@ apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf update
 
 source ~/.profile
 
-echo "Done installing. Happy fapt-ing!"
+echo "Ok, the installation's done. Happy fapt-ing!"
