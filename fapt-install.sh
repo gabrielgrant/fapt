@@ -32,22 +32,25 @@ ln -sf /bin/bash $FAPT_ROOT/bin/bash
 ln -sf /bin/sh $FAPT_ROOT/bin/sh
 
 
-# make sure we have the full PATH (in case we're running non-interactively)
-source ~/.profile
-source ~/.bashrc
+# ensure at least the basic bin directories are on PATH
+
+BASIC_PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+PATH=$PATH:$BASIC_PATH
+
+# deduplicate (from http://chunchung.blogspot.com/2007/11/remove-duplicate-paths-from-path-in.html)
+PATH=`awk -F: '{for(i=1;i<=NF;i++){if(!($i in a)){a[$i];printf s$i;s=":"}}}'<<<$PATH`
 
 # give access to executables outside of chroot
 #
-BACKUP_PATH=`python -c "print ':'.join('/realroot'+p for p in '$PATH'.split(':')),"`
+
+REALROOT_PATH=`awk -F: '{for(i=1;i<=NF;i++){printf s"/realroot"$i;s=":"}}'<<<$PATH`
 #PATH=$PATH:$BACKUP_PATH
 ln -sf / $FAPT_ROOT/realroot || true
 
-# in chroot, do:
-#PATH=$PATH:$REALROOT_PATH
+FAPT_PATH=`awk -v fapt_root=$FAPT_ROOT -F: '{for(i=1;i<=NF;i++){printf s fapt_root$i;s=":"}}'<<<$PATH`
 
-REALROOT_PATH=`python -c "print \":\".join(\"/realroot\"+p for p in \"$PATH\".split(\":\")),"`
-
-FAPT_PATH=`python -c "print ':'.join('$FAPT_ROOT'+p for p in '$PATH'.split(':')),"`
+# should do the same thing
+# FAPT_PATH=`python -c "print ':'.join('$FAPT_ROOT'+p for p in '$PATH'.split(':')),"`
 
 FAPT_LD_LIBRARY_PATH=`fakeroot $FAPT_ROOT/bin/fakechroot chroot $FAPT_ROOT /bin/bash -c '/realroot/bin/echo $LD_LIBRARY_PATH'`
 #FAPT_LD_LIBARY_PATH=`python -c "print ':'.join(p.replace('$FAPT_ROOT', '') if p.startswith('$FAPT_ROOT') else '$FAPT_ROOT'+p for p in '$FAPT_LD_LIBRARY_PATH'.split(':')),"`
@@ -60,7 +63,7 @@ else
 export FAPT_ROOT=${HOME}/.fapt/fake
 
 # fapt paths
-export PATH=$FAPT_PATH:\$PATH:$BACKUP_PATH
+export PATH=$FAPT_PATH:\$PATH:$REALROOT_PATH
 
 export REALROOT_PATH=$REALROOT_PATH
 
