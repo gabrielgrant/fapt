@@ -94,6 +94,11 @@ Dir
   Root \"${FAPT_ROOT}\";
   Cache \"${FAPT_ROOT}/var/cache/apt/\";
   State \"${FAPT_ROOT}/var/lib/apt/\";
+  Etc
+  {
+    SourceList \"${FAPT_ROOT}/etc/apt/sources.list\";
+    SourceParts \"${FAPT_ROOT}/etc/apt/sources.list.d/\";
+  }
 };
 
 Debug
@@ -107,6 +112,11 @@ DPkg
   Options {\"--force-overwrite\";\"--root=${FAPT_ROOT}\";\"--force-not-root\";\"--log=${FAPT_ROOT}/var/log/dpkg.log\";}
 }
 " > $FAPT_ROOT/etc/apt/apt.conf
+
+mkdir -p $FAPT_ROOT/etc/apt/sources.list.d
+ln -s /etc/apt/sources.list.d/* $FAPT_ROOT/etc/apt/sources.list.d/
+ln -s /etc/apt/sources.list $FAPT_ROOT/etc/apt/sources.list.d/orig.list
+touch $FAPT_ROOT/etc/apt/sources.list
 
 mkdir -p $FAPT_ROOT/usr/bin
 cp -f $SCRIPT_DIR/fapt.sh $FAPT_ROOT/usr/bin/fapt
