@@ -4,10 +4,8 @@ FAPT_ROOT=${HOME}/.fapt/fake
 
 echo "starting to install $@"
 
-# so long as we aren't using the cache list to configure by,
-# there's no reason to clear it
-#echo "cleaning the cache"
-#apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf clean
+echo "cleaning the cache"
+apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf clean
 
 echo "downloading"
 apt-get -c ${FAPT_ROOT}/etc/apt/apt.conf -d install $@
