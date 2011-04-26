@@ -12,6 +12,8 @@ mkdir -p $FAPT_ROOT/tmp
 curl -o $FAPT_ROOT/tmp/bootstrap_local_bash_env.sh https://github.com/gabrielgrant/bootstrap/raw/master/bootstrap_local_bash_env.sh
 bash $FAPT_ROOT/tmp/bootstrap_local_bash_env.sh
 
+FAKECHROOT_EXE=fakechroot
+
 if ! type -P fakechroot &>/dev/null; then
     echo "Installing fakechroot..."
 
@@ -23,6 +25,7 @@ if ! type -P fakechroot &>/dev/null; then
     make
     make install
     cd ~/
+    FAKECHROOT_EXE=$FAPT_ROOT/bin/fakechroot
 fi
 
 # allows chroot to start
@@ -52,7 +55,7 @@ FAPT_PATH=`awk -v fapt_root=$FAPT_ROOT -F: '{for(i=1;i<=NF;i++){printf s fapt_ro
 # should do the same thing
 # FAPT_PATH=`python -c "print ':'.join('$FAPT_ROOT'+p for p in '$PATH'.split(':')),"`
 
-FAPT_LD_LIBRARY_PATH=`fakeroot $FAPT_ROOT/bin/fakechroot chroot $FAPT_ROOT /bin/bash -c '/realroot/bin/echo $LD_LIBRARY_PATH'`
+FAPT_LD_LIBRARY_PATH=`fakeroot $FAKECHROOT_EXE chroot $FAPT_ROOT /bin/bash -c '/realroot/bin/echo $LD_LIBRARY_PATH'`
 #FAPT_LD_LIBARY_PATH=`python -c "print ':'.join(p.replace('$FAPT_ROOT', '') if p.startswith('$FAPT_ROOT') else '$FAPT_ROOT'+p for p in '$FAPT_LD_LIBRARY_PATH'.split(':')),"`
 
 
